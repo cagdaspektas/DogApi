@@ -1,6 +1,3 @@
-import 'package:edoktor_structure/core/network/network_manager.dart';
-import 'package:edoktor_structure/data/repository/car/car_repository_imp.dart';
-import 'package:edoktor_structure/domain/model/cars/cars_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
@@ -14,7 +11,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("HomeView"),
+          title: const Text("HomeView"),
         ),
         body: BlocListener<HomeBloc, HomeState>(
           bloc: bloc,
@@ -27,12 +24,12 @@ class HomeView extends StatelessWidget {
               switch (state.homeStateStatus) {
                 case HomeStateStatus.initial:
                   bloc.add(FetchData());
-                  return Center(
+                  return const Center(
                       child: CircularProgressIndicator(
                     color: Colors.red,
                   ));
                 case HomeStateStatus.loading:
-                  return Center(
+                  return const Center(
                       child: CircularProgressIndicator(
                     color: Colors.red,
                   ));
@@ -46,12 +43,13 @@ class HomeView extends StatelessWidget {
                 case HomeStateStatus.completed:
                   return Center(
                     child: Text(
-                      state.carsModel?.cars?.length.toString() ?? "",
+                      "",
+                      //  state.carsModel?.length.toString() ?? "",
                       style: context.textTheme.bodyLarge,
                     ),
                   );
                 default:
-                  return Text("veri yok");
+                  return const Text("veri yok");
               }
             },
           ),

@@ -6,8 +6,7 @@ class ImageConstants {
   }
 
   ImageConstants._init();
-  final String mainLogo = 'image/main_logo'.toPNG;
-
+  final String splashLogo = 'images/dog_photo'.toPNG;
 }
 
 extension _ImageConstantsExtension on String {

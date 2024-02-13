@@ -10,7 +10,7 @@ class NetworkManager {
   NetworkManager._internal() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "https://myfakeapi.com/api/",
+        baseUrl: "https://dog.ceo/api/",
       ),
     );
     dio.interceptors.add(PrettyDioLogger(

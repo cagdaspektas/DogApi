@@ -6,5 +6,5 @@ class StringConstants {
   }
 
   StringConstants._init();
-  final String appName = 'VBT e-Doktor';
+  final String appName = 'Dog Api';
 }

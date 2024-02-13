@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:edoktor_structure/domain/model/base_model.dart';
 import 'package:dio/dio.dart';
+
+import '../../domain/model/base_model.dart';
 
 class RepositoryManager {
   Dio? dio;
