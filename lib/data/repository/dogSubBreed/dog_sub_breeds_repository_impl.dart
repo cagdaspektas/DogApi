@@ -11,7 +11,7 @@ class DogSubBreedsRepositoryImpl extends IDogSubBreedRepository {
   @override
   Future<DogSubBreedModel?> fetchDogSubBreeds({String? breedName}) async {
     DogSubBreedModel? dogSubBreedsRepository = await repositoryManager?.fetch(
-        path: ServiceEnum.fetchBreeds.servicePaths(breedName: breedName), model: DogSubBreedModel());
+        path: ServiceEnum.fetchSubBreeds.servicePaths(breedName: breedName), model: DogSubBreedModel());
     return dogSubBreedsRepository;
   }
 }

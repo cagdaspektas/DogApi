@@ -95,7 +95,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
               return;
             }, (r) async {
               dogBreedsResponseModel = r;
-              dogList.add(DogListModel(breedName: '$key/${data[i]}', breedImage: dogBreedsResponseModel?.message));
+              dogList.add(DogListModel(breedName: '$key ${data[i]}', breedImage: dogBreedsResponseModel?.message));
             });
           }
         } else {

@@ -6,12 +6,12 @@ import '../../model/dobSubBreed/dog_sub_breed_model.dart';
 import '../../repository/dogSubBreed/dog_sub_breed_repository.dart';
 
 class DogSubBreedsUseCase {
-  IDogSubBreedRepository? iDogBreedRepository;
-  DogSubBreedsUseCase({required this.iDogBreedRepository});
+  IDogSubBreedRepository? iDogSubBreedRepository;
+  DogSubBreedsUseCase({required this.iDogSubBreedRepository});
 
   Future<Either<Failure, DogSubBreedModel?>>? fetchDogSubBreeds({String? breedName}) async {
     try {
-      DogSubBreedModel? dogs = await iDogBreedRepository?.fetchDogSubBreeds(breedName: breedName);
+      DogSubBreedModel? dogs = await iDogSubBreedRepository?.fetchDogSubBreeds(breedName: breedName);
       return Right(dogs);
     } on DioException catch (e) {
       if (e.response?.statusCode == 404) {
