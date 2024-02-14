@@ -5,18 +5,13 @@ enum HomeStateStatus { initial, loading, error, completed }
 class HomeState {
   HomeStateStatus? homeStateStatus;
   Failure? failure;
-  DogResponseModel? carsModel;
+  List<DogListModel>? dogList;
+  HomeState({this.homeStateStatus = HomeStateStatus.initial, this.dogList, this.failure});
 
-  HomeState({this.homeStateStatus = HomeStateStatus.initial, this.carsModel, this.failure});
-
-  HomeState copyWith({
-    HomeStateStatus? homeStateStatus,
-    Failure? failure,
-    DogResponseModel? carsModel,
-  }) {
+  HomeState copyWith({HomeStateStatus? homeStateStatus, Failure? failure, List<DogListModel>? dogList}) {
     return HomeState(
         homeStateStatus: homeStateStatus ?? this.homeStateStatus,
         failure: failure ?? this.failure,
-        carsModel: carsModel ?? this.carsModel);
+        dogList: dogList ?? this.dogList);
   }
 }

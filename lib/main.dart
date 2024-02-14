@@ -4,19 +4,24 @@ import 'package:dog_api/presentation/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 import 'core/init/theme/app_theme.dart';
+
 import 'data/di/dependency_injection.dart';
-import 'presentation/home/view/home_view.dart';
+import 'domain/model/dogList/dog_list.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(DogListModelAdapter());
+
+  await Hive.openBox<DogListModel>('dogBox');
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  widgetsBinding;
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await setupDi();
-  //await EasyLocalization.ensureInitialized();
   runApp(
     const MyApp(),
   );

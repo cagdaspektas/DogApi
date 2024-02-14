@@ -1,6 +1,6 @@
 part of 'splash_screen_bloc.dart';
 
-enum SplashStateStatus { initial, loading, error, completed }
+enum SplashStateStatus { initial, loading, getFirstData, getSecondData, error, completed }
 
 class SplashState {
   SplashStateStatus? splashStateStatus;

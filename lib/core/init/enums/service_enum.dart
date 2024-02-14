@@ -1,4 +1,4 @@
-enum ServiceEnum { listAll, fetchBreeds }
+enum ServiceEnum { listAll, fetchBreeds, fetchSubBreeds }
 
 extension ServiceExtension on ServiceEnum {
   String servicePaths({String? breedName}) {
@@ -7,6 +7,8 @@ extension ServiceExtension on ServiceEnum {
         return 'breeds/list/all';
       case ServiceEnum.fetchBreeds:
         return 'breed/$breedName/images/random';
+      case ServiceEnum.fetchSubBreeds:
+        return 'breed/$breedName/list';
     }
   }
 }

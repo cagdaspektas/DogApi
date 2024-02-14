@@ -1,4 +1,5 @@
 import 'package:dog_api/core/init/constants/image_constants.dart';
+import 'package:dog_api/presentation/home/view/home_view.dart';
 import 'package:dog_api/presentation/splash/viewModel/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,12 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         if (state.splashStateStatus == SplashStateStatus.completed) {
           FlutterNativeSplash.remove();
+          bloc.close();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => HomeView(),
+            ),
+          );
         }
       },
       child: BlocBuilder<SplashBloc, SplashState>(
@@ -35,6 +42,23 @@ class SplashScreen extends StatelessWidget {
                 ),
               );
             case SplashStateStatus.loading:
+              return Center(
+                child: Image.asset(
+                  ImageConstants.instance.splashLogo,
+                  scale: 3,
+                ),
+              );
+            case SplashStateStatus.getFirstData:
+              bloc.add(FetchDogBreed());
+
+              return Center(
+                child: Image.asset(
+                  ImageConstants.instance.splashLogo,
+                  scale: 3,
+                ),
+              );
+
+            case SplashStateStatus.getSecondData:
               return Center(
                 child: Image.asset(
                   ImageConstants.instance.splashLogo,
