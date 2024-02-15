@@ -32,8 +32,7 @@ class MainScreenState extends State<MainScreen> {
               child: IndexedStack(
                 index: _selected.index,
                 children: [
-                  for (final item in NavItem.values) //
-                    item.builder(),
+                  for (final item in NavItem.values) item.builder(),
                 ],
               ),
             ),

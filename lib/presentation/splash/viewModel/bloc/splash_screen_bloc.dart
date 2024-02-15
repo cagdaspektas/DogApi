@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dog_api/domain/model/dogBreed/dog_breed_res_model.dart';
@@ -82,6 +80,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       Either<Failure, DogBreedsResponseModel?>? response;
       emit(state.copyWith(splashStateStatus: SplashStateStatus.getSecondData));
       dogBox = Hive.box<DogListModel>("dogBox");
+      if (dogBox!.isNotEmpty) {
+        dogBox?.clear();
+      }
 
       for (final mapEntry in dogsModel!.message!.entries) {
         final key = mapEntry.key;
@@ -109,8 +110,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         }
       }
 
-      await dogBox?.addAll(dogList);
-      log(dogList[0].breedImage.toString());
+      dogBox?.addAll(dogList);
       emit(state.copyWith(
           splashStateStatus: SplashStateStatus.completed,
           dogsModel: dogsModel,

@@ -25,7 +25,118 @@ class HomeView extends StatelessWidget {
         body: BlocListener<HomeBloc, HomeState>(
           bloc: bloc,
           listener: (context, state) {
-            // TODO: implement listener
+            if (state.homeStateStatus == HomeStateStatus.onTap) {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Dialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        insetPadding: EdgeInsets.zero,
+                        child: SizedBox(
+                          height: 100.h,
+                          width: 100.w,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Stack(children: [
+                                SizedBox(
+                                  width: 100.w,
+                                  height: 50.h,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Image.network(
+                                        bloc.image ?? "",
+                                        fit: BoxFit.cover,
+                                      )),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    context.pop();
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 48.0,
+                                        height: 48.0,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Center(
+                                          child: Icon(
+                                            Icons.close,
+                                            color: Colors.black,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                              SizedBox(height: 1.h),
+                              const Text(
+                                'Breed',
+                                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.blue),
+                              ),
+                              const Divider(
+                                thickness: 2.0,
+                                color: Color(0xffF2F2F7),
+                              ),
+                              Text(
+                                bloc.fullName ?? "",
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(color: Colors.black, fontSize: 18),
+                              ),
+                              SizedBox(height: 1.h),
+                              const Text(
+                                'SubBreed',
+                                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.blue),
+                              ),
+                              const Divider(
+                                thickness: 2.0,
+                                color: Color(0xffF2F2F7),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: state.dogSubBreedModel?.message?.length,
+                                  itemBuilder: (BuildContext context, int i) {
+                                    return Text(
+                                      state.dogSubBreedModel?.message?[i] ?? "",
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(color: Colors.black, fontSize: 18),
+                                    );
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 80.w,
+                                height: 7.h,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blue,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                    onPressed: () {},
+                                    child: const Text(
+                                      "Generate",
+                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                    )),
+                              ),
+                              SizedBox(height: 1.h),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  });
+            }
           },
           child: BlocBuilder<HomeBloc, HomeState>(
             bloc: bloc,
@@ -49,6 +160,7 @@ class HomeView extends StatelessWidget {
                       style: context.textTheme.bodyLarge,
                     ),
                   );
+                case HomeStateStatus.onTap:
                 case HomeStateStatus.completed:
                   return GridView.builder(
                       itemCount: state.dogList?.length,
@@ -58,8 +170,13 @@ class HomeView extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            bloc.add(FetchSubBreedData(breedName: state.dogList?[index].breedName?.split(' ')[0]));
-                            showDialog(
+                            bloc.add(FetchSubBreedData(
+                              breedName: state.dogList?[index].breedName?.split(' ')[0],
+                              image: state.dogList?[index].breedImage ?? "",
+                              fullName: state.dogList?[index].breedName ?? "",
+                            ));
+
+                            /*     showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return Padding(
@@ -172,6 +289,7 @@ class HomeView extends StatelessWidget {
                                     ),
                                   );
                                 });
+                          */
                           },
                           child: Stack(
                             children: [

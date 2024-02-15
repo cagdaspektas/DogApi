@@ -23,6 +23,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   DogSubBreedImageModel? dogSubBreedImageModel;
   DogSubBreedsUseCase dogSubBreedsUseCase;
   DogSubBreedsImageUseCase dogSubBreedsImageUseCase;
+  String? image;
+  String? fullName;
+
   HomeBloc({required this.dogSubBreedsUseCase, required this.dogSubBreedsImageUseCase}) : super(HomeState()) {
     on<FetchData>((event, emit) async {
       dogBox = Hive.box<DogListModel>("dogBox");
@@ -37,13 +40,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(state.copyWith(homeStateStatus: HomeStateStatus.error, failure: l, dogList: dogList));
       }, (r) async {
         dogSubBreedModel = r;
+        image = event.image;
+        fullName = event.fullName;
       });
 
       emit(state.copyWith(
-          homeStateStatus: HomeStateStatus.completed,
-          failure: null,
-          dogList: dogList,
-          dogSubBreedModel: dogSubBreedModel));
+          homeStateStatus: HomeStateStatus.onTap, failure: null, dogList: dogList, dogSubBreedModel: dogSubBreedModel));
     });
     on<FetchSubBreedImageData>((event, emit) async {
       Either<Failure, DogSubBreedImageModel?>? response =

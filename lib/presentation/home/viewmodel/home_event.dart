@@ -6,10 +6,15 @@ class FetchData extends HomeEvent {}
 
 class FetchSubBreedData extends HomeEvent {
   String? breedName;
-  FetchSubBreedData({this.breedName});
+  String? image;
+  String? fullName;
+  FetchSubBreedData({this.breedName, this.fullName, this.image});
 }
 
 class FetchSubBreedImageData extends HomeEvent {
   String? breedName;
-  FetchSubBreedImageData({this.breedName});
+
+  FetchSubBreedImageData({
+    this.breedName,
+  });
 }
