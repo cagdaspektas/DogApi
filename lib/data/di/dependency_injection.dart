@@ -1,4 +1,5 @@
 import 'package:dog_api/domain/usecase/fetchDogSubBreeds/fetch_dog_sub_breeds_usecase.dart';
+import 'package:dog_api/presentation/settings/viewModel/bloc/settings_bloc.dart';
 import 'package:dog_api/presentation/splash/viewModel/bloc/splash_screen_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
@@ -41,4 +42,6 @@ Future<void> setupDi() async {
       dogSubBreedsUseCase: di<DogSubBreedsUseCase>(), dogSubBreedsImageUseCase: di<DogSubBreedsImageUseCase>()));
   di.registerFactory<SplashBloc>(
       () => SplashBloc(getDogsUseCase: di<GetDogUseCase>(), fetchDogBreed: di<DogBreedsUseCase>()));
+
+  di.registerFactory<SettingsBloc>(() => SettingsBloc());
 }

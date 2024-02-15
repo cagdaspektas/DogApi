@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
   final bloc = di<HomeBloc>();
   @override
   Widget build(BuildContext context) {
-    final viewPadding = MediaQuery.viewPaddingOf(context);
+    // final viewPadding = MediaQuery.viewPaddingOf(context);
 
     return Scaffold(
         appBar: AppBar(

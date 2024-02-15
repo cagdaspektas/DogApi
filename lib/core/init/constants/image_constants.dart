@@ -1,18 +1,8 @@
-class ImageConstants {
-  static ImageConstants? _instace;
-  static ImageConstants get instance {
-    _instace ??= ImageConstants._init();
-    return _instace!;
-  }
+class Assets {
+  const Assets._();
 
-  ImageConstants._init();
-  final String splashLogo = 'images/dog_photo'.toPNG;
-}
-
-extension _ImageConstantsExtension on String {
-  String get toPNG => 'assets/$this.png';
-  String get toJPEG => 'assets/$this.jpeg';
-  String get toJSON => 'assets/$this.json';
-  String get toSVG => 'assets/$this.svg';
-  String get toGif => 'assets/$this.gif';
+  static const _images = 'assets/images';
+  static const splashLogo = '$_images/dog_photo.png';
+  static const homeNav = '$_images/home.svg';
+  static const settingsNav = '$_images/settings.svg';
 }

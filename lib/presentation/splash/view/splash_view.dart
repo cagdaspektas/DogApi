@@ -7,6 +7,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../data/di/dependency_injection.dart';
+import '../../main/view/main_view.dart';
 
 @immutable
 class SplashScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class SplashScreen extends StatelessWidget {
           bloc.close();
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => HomeView(),
+              builder: (context) => const MainScreen(),
             ),
           );
         }
@@ -37,14 +38,14 @@ class SplashScreen extends StatelessWidget {
               bloc.add(FetchDogs());
               return Center(
                 child: Image.asset(
-                  ImageConstants.instance.splashLogo,
+                  Assets.splashLogo,
                   scale: 3,
                 ),
               );
             case SplashStateStatus.loading:
               return Center(
                 child: Image.asset(
-                  ImageConstants.instance.splashLogo,
+                  Assets.splashLogo,
                   scale: 3,
                 ),
               );
@@ -53,7 +54,7 @@ class SplashScreen extends StatelessWidget {
 
               return Center(
                 child: Image.asset(
-                  ImageConstants.instance.splashLogo,
+                  Assets.splashLogo,
                   scale: 3,
                 ),
               );
@@ -61,7 +62,7 @@ class SplashScreen extends StatelessWidget {
             case SplashStateStatus.getSecondData:
               return Center(
                 child: Image.asset(
-                  ImageConstants.instance.splashLogo,
+                  Assets.splashLogo,
                   scale: 3,
                 ),
               );

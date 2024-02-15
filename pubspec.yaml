@@ -37,6 +37,7 @@ dependencies:
   dartz: ^0.10.1
   sizer: ^2.0.15
   intl: ^0.19.0
+  flutter_svg: ^2.0.9
 
   #Dependency Injection
   get_it: ^7.3.0

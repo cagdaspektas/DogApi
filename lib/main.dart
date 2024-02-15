@@ -1,5 +1,6 @@
 import 'package:dog_api/core/init/constants/app_constants.dart';
 import 'package:dog_api/core/init/constants/string_constants.dart';
+import 'package:dog_api/presentation/settings/view/settings_view.dart';
 import 'package:dog_api/presentation/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
