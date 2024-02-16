@@ -39,44 +39,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           failure: null));
     });
     on<FetchDogBreed>((event, emit) async {
-      /*  Either<Failure, DogBreedsResponseModel?>? response;
-      emit(state.copyWith(splashStateStatus: SplashStateStatus.getSecondData));
-      Hive.registerAdapter(DogListModelAdapter());
-      var box = await Hive.openBox('dogBox');
-      dogsModel?.message?.forEach((key, value) async {
-        List<String> data = [];
-        data = value;
-        if (data.isNotEmpty) {
-          for (var i = 0; i < data.length; i++) {
-            response = await fetchDogBreed.fetchDogBreeds(breedName: '$key/${data[i]}');
-          }
-        } else {
-          response = await fetchDogBreed.fetchDogBreeds(breedName: key);
-        }
-        response?.fold((l) {
-          return;
-        }, (r) async {
-          dogBreedsResponseModel = r;
-          dogsModel?.message?.forEach((key, value) async {
-            List<String> data = [];
-            data = value;
-            if (data.isNotEmpty) {
-              for (var i = 0; i < data.length; i++) {
-                dogList.add(DogListModel(breedName: '$key/${data[i]}', breedImage: dogBreedsResponseModel?.message));
-              }
-            } else {
-              dogList.add(DogListModel(breedName: key, breedImage: dogBreedsResponseModel?.message));
-            }
-          });
-        });
-        await box.addAll(dogList);
-        log(dogList[0].breedImage.toString());
-      });
-      emit(state.copyWith(
-          splashStateStatus: SplashStateStatus.completed,
-          dogsModel: dogsModel,
-          dogBreedsResponseModel: dogBreedsResponseModel,
-          failure: null)); */
       Either<Failure, DogBreedsResponseModel?>? response;
       emit(state.copyWith(splashStateStatus: SplashStateStatus.getSecondData));
       dogBox = Hive.box<DogListModel>("dogBox");

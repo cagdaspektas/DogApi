@@ -39,7 +39,9 @@ Future<void> setupDi() async {
 
   //Viewmodel - Bloc
   di.registerFactory<HomeBloc>(() => HomeBloc(
-      dogSubBreedsUseCase: di<DogSubBreedsUseCase>(), dogSubBreedsImageUseCase: di<DogSubBreedsImageUseCase>()));
+      dogSubBreedsUseCase: di<DogSubBreedsUseCase>(),
+      dogSubBreedsImageUseCase: di<DogSubBreedsImageUseCase>(),
+      fetchDogBreed: di<DogBreedsUseCase>()));
   di.registerFactory<SplashBloc>(
       () => SplashBloc(getDogsUseCase: di<GetDogUseCase>(), fetchDogBreed: di<DogBreedsUseCase>()));
 

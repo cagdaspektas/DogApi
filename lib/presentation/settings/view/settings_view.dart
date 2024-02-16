@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/widgets/appbar/custom_appbar.dart';
 import '../../../data/di/dependency_injection.dart';
 
 class SettingsView extends StatelessWidget {
@@ -14,10 +15,14 @@ class SettingsView extends StatelessWidget {
     final bloc = di<SettingsBloc>();
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Dog Api",
-            style: TextStyle(color: Colors.black),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: CustomAppBar(
+            hasBack: false,
+            center: true,
+            title: "Dog Api",
+            actions: const [],
+            appBarOnPressed: () {},
           ),
         ),
         body: BlocListener<SettingsBloc, SettingsState>(
@@ -48,46 +53,7 @@ class SettingsView extends StatelessWidget {
                     ),
                   );
                 case SettingsStateEnum.completed:
-                  return ListView.builder(
-                    itemCount: bloc.profileList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      bloc.profileList[index].icon,
-                                      color: Colors.black,
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    Text(bloc.profileList[index].textName,
-                                        style: const TextStyle(color: Colors.black, fontSize: 16)),
-                                  ],
-                                ),
-                                bloc.profileList[index].textName == "Os Version"
-                                    ? Text(
-                                        bloc.version ?? "0.0.0",
-                                        style: const TextStyle(color: Colors.black, fontSize: 16.0),
-                                      )
-                                    : const SizedBox()
-                              ],
-                            ),
-                            const Divider(
-                              thickness: 4,
-                              color: Color(0xffF2F2F7),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
+                  return MainPage(bloc: bloc);
 
                 default:
                   return const Text("veri yok");
@@ -95,5 +61,57 @@ class SettingsView extends StatelessWidget {
             },
           ),
         ));
+  }
+}
+
+class MainPage extends StatelessWidget {
+  const MainPage({
+    super.key,
+    required this.bloc,
+  });
+
+  final SettingsBloc bloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: bloc.profileList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        bloc.profileList[index].icon,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      Text(bloc.profileList[index].textName, style: const TextStyle(color: Colors.black, fontSize: 16)),
+                    ],
+                  ),
+                  bloc.profileList[index].textName == "Os Version"
+                      ? Text(
+                          bloc.version ?? "0.0.0",
+                          style: const TextStyle(color: Colors.black, fontSize: 16.0),
+                        )
+                      : const SizedBox()
+                ],
+              ),
+              const Divider(
+                thickness: 4,
+                color: Color(0xffF2F2F7),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,6 +1,6 @@
 part of 'home_bloc.dart';
 
-enum HomeStateStatus { initial, loading, error, onTap, completed }
+enum HomeStateStatus { initial, loading, error, onTap, searh, onGenerate, completed }
 
 class HomeState {
   HomeStateStatus? homeStateStatus;

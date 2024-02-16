@@ -11,6 +11,22 @@ class FetchSubBreedData extends HomeEvent {
   FetchSubBreedData({this.breedName, this.fullName, this.image});
 }
 
+class FetchBreedGenerateImage extends HomeEvent {
+  String? breedName;
+
+  FetchBreedGenerateImage({
+    this.breedName,
+  });
+}
+
+class SearhcBreeds extends HomeEvent {
+  String? breedName;
+
+  SearhcBreeds({
+    this.breedName,
+  });
+}
+
 class FetchSubBreedImageData extends HomeEvent {
   String? breedName;
 
