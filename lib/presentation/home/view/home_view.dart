@@ -65,8 +65,29 @@ class HomeView extends StatelessWidget {
                 case HomeStateStatus.completed:
                   return Stack(
                     children: [
-                      bloc.textEditingController.text.isNotEmpty ? _searchGrid() : _normalGrid(state),
-                      DraggableTextFormField(bloc: bloc),
+                      bloc.textEditingController.text.isNotEmpty
+                          ? bloc.searchBreeds.isEmpty
+                              ? const Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "No Results Found",
+                                        style:
+                                            TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Try Searchin Another Word",
+                                        style:
+                                            TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : _searchGrid()
+                          : _normalGrid(state),
+                      DraggableTextFormField(bloc: bloc)
                     ],
                   );
 
@@ -382,17 +403,17 @@ class DraggableTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       initialChildSize: 0.15,
-      minChildSize: 0.1,
+      minChildSize: 0.15,
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           color: Colors.white,
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.only(left: 8),
           child: ListView.builder(
             controller: scrollController,
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Column(children: [
                   Divider(
                     indent: 40.w,
