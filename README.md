@@ -1,6 +1,6 @@
 # Dog Api
 A project using this technologies:Flutter,Dart
-Packages and tecnics i use:Dio,bloc,dependency injection,dartz,sizer,intl,hive,method channel for the version name etc.
+Packages and technics i use:Dio,bloc,dependency injection,dartz,sizer,intl,hive,method channel (for the version name) etc.
 Some of the screens are:
 
 ![Simulator Screenshot - iPhone 15 Pro - 2024-02-16 at 15 58 31](https://github.com/cagdaspektas/DogApi/assets/62350321/3e18e9fc-d253-45ad-8088-ed4be2b86b9f)
