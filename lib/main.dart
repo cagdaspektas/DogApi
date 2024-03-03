@@ -1,5 +1,6 @@
 import 'package:dog_api/core/init/constants/app_constants.dart';
 import 'package:dog_api/core/init/constants/string_constants.dart';
+import 'package:dog_api/core/init/mainFunc/main_function.dart';
 import 'package:dog_api/presentation/settings/view/settings_view.dart';
 import 'package:dog_api/presentation/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -14,15 +15,7 @@ import 'data/di/dependency_injection.dart';
 import 'domain/model/dogList/dog_list.dart';
 
 void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(DogListModelAdapter());
-
-  await Hive.openBox<DogListModel>('dogBox');
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  widgetsBinding;
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  await setupDi();
+  await MainFunction.setupInitialize();
   runApp(
     const MyApp(),
   );

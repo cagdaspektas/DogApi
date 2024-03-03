@@ -46,7 +46,7 @@ SPEC CHECKSUMS:
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
-  url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812
+  url_launcher_ios: 6116280ddcfe98ab8820085d8d76ae7449447586
 
 PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 

@@ -36,6 +36,7 @@ class SplashScreen extends StatelessWidget {
           switch (state.splashStateStatus) {
             case SplashStateStatus.initial:
               bloc.add(FetchDogs());
+              // bloc.add(FetchDogBreed());
               return Center(
                 child: Image.asset(
                   Assets.splashLogo,
@@ -50,8 +51,6 @@ class SplashScreen extends StatelessWidget {
                 ),
               );
             case SplashStateStatus.getFirstData:
-              bloc.add(FetchDogBreed());
-
               return Center(
                 child: Image.asset(
                   Assets.splashLogo,
